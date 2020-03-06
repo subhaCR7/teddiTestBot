@@ -24,23 +24,11 @@ class EchoBot extends ActivityHandler {
             console.log('this gets called (message)');
             
             // Save updated utterance inputs.
-            // await logMessageText(storage, turnContext);
-            await next();
+            await logMessageText(storage, turnContext);
         });
 
-        // this.onConversationUpdate(async turnContext => { console.log('this gets called (conversation update)'); 
-        //     await turnContext.sendActivity('[conversationUpdate event detected]'); 
-        // });
-
-        this.onMembersAdded(async (context, next) => {
-            const membersAdded = context.activity.membersAdded;
-            for (let cnt = 0; cnt < membersAdded.length; ++cnt) {
-                if (membersAdded[cnt].id !== context.activity.recipient.id) {
-                    await context.sendActivity('Hello and welcome11!');
-                }
-            }
-            // By calling next() you ensure that the next BotHandler is run.
-            await next();
+        this.onConversationUpdate(async turnContext => { console.log('this gets called (conversation update)'); 
+            await turnContext.sendActivity('[conversationUpdate event detected]'); 
         });
 
     }
