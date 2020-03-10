@@ -5,16 +5,18 @@ const { ActivityHandler, MessageFactory } = require('botbuilder');
 const { CosmosDbPartitionedStorage } = require("botbuilder-azure");
 const restify = require('restify');
 const path = require('path');
+const dbConfig = require('./dbConfig');
+// console.log(dbConfig)
 
 const ENV_FILE = path.join(__dirname, '.env');
 require('dotenv').config({ path: ENV_FILE });
 
 // Create access to CosmosDb Storage - this replaces local Memory Storage.
 var storage = new CosmosDbPartitionedStorage({
-    cosmosDbEndpoint: process.env.DB_SERVICE_ENDPOINT, 
-    authKey: process.env.AUTH_KEY, 
-    databaseId: process.env.DATABASE_ID,
-    containerId: process.env.CONTAINER
+    cosmosDbEndpoint: dbConfig.DB_SERVICE_ENDPOINT, 
+    authKey: dbConfig.AUTH_KEY, 
+    databaseId: dbConfig.DATABASE_ID,
+    containerId: dbConfig.CONTAINER
 })
 
 class EchoBot extends ActivityHandler {
