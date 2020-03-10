@@ -6,7 +6,8 @@ const { CosmosDbPartitionedStorage } = require("botbuilder-azure");
 const restify = require('restify');
 const path = require('path');
 const dbConfig = require('./dbConfig');
-// console.log(dbConfig)
+// console.log(dbConfig.DB_SERVICE_ENDPOINT)
+// console.log(dbConfig.AUTH_KEY)
 
 const ENV_FILE = path.join(__dirname, '.env');
 require('dotenv').config({ path: ENV_FILE });
