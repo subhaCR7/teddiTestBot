@@ -25,6 +25,7 @@ class EchoBot extends ActivityHandler {
         super();
         this.onMessage(async (turnContext, next) => {
             console.log('this gets called (message)');
+            // console.log(turnContext._activity.from.id);
             
             // Save updated utterance inputs.
             await logMessageText(storage, turnContext);
@@ -46,7 +47,8 @@ async function logMessageText(storage, turnContext) {
     }
     // debugger;
     try {
-        var conversationId= "AwpC3WwRnPE6KGEDgj78bM-c"
+        // var conversationId= "AwpC3WwRnPE6KGEDgj78bM-c"
+        var conversationId= turnContext.activity.from.id
         // Read from the storage.
         let storeItems = await storage.read([conversationId])
         // Check the result.
